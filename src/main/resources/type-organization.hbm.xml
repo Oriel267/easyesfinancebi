@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.referential.organization.OrgaType"
+		table="tr_organization_type" dynamic-update="true">
+		<id name="id" type="int">
+			<column name="IDTR_ORGANIZATION_TYPE" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="code" type="string">
+			<column name="TR_ORGA_TYPE_CODE" length="45" not-null="false" />
+		</property>
+		<property name="label" type="string">
+			<column name="TR_ORGA_TYPE_DESCRIPTION" length="45" not-null="false" />
+		</property>
+		<property name="legalStatus" type="string">
+			<column name="TR_ORGA_TYPE_LEGAL_STATUS" length="45" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

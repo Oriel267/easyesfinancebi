@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.esiag.isies.pds.model.bi.finance.staging">
+		
+		<class name="StagingMedicalJourney" table="tr_medicaljourneytable" >
+        <id name="idjourney" type="int">
+            <column name="tr_idjourney" />
+        </id>
+		<property name="namejourney" type="string">
+			<column name="tr_namejourney" length="50"  />
+		</property>
+		<property name="status" type="string">
+			<column name="tr_statusjourney" length="50"  />
+		</property>
+		<property name="startdate" type="date">
+			<column name="tr_startdate" length="50"  />
+		</property>
+		<property name="enddate" type="date">
+			<column name="tr_enddate" length="50"  />
+		</property>
+		
+		
+         
+        <set name="medicalservices" table="tr_servicejourney" lazy="true" fetch="select">
+                <key column="tr_idjourney"/>
+            <many-to-many column="tr_idmedicalservice" class="StagingMedicalservice"/>
+        </set>
+        <one-to-one name="patient" class="fr.esiag.isies.pds.model.bi.finance.staging.StagingPatient" fetch="select"></one-to-one>
+			
+	</class>
+</hibernate-mapping>

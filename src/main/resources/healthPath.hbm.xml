@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.healthPath.HealthPath"
+		table="tr_health_path">
+		<!-- medicalAct currentState startDate endDate -->
+		<id name="id" type="int">
+			<column name="idtr_health_path" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="startDate" type="date">
+			<column name="tr_health_path_start_date" length="45" not-null="false" />
+		</property>
+		<property name="endDate" type="date">
+			<column name="tr_health_path_end_date" length="45" not-null="false" />
+		</property>
+		<set name="steps" table="tr_healthPath_step" inverse="true"
+			lazy="false" fetch="select">
+			<key>
+				<column name="idtr_health_path" not-null="true" />
+			</key>
+			<one-to-many class="fr.esiag.isies.pds.model.healthPath.HealthPath" />
+		</set>
+		<many-to-one name="medicalRecord"
+			class="fr.esiag.isies.pds.model.referential.medicalRecord.MedicalRecord"
+			lazy="false" cascade="all">
+			<column name="IDTR_MEDICAL_RECORD" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

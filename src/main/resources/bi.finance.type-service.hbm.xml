@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.bi.finance.DimServiceType"
+		table="tr_dim_service_type" dynamic-update="true">
+		<id name="id" type="int">
+			<column name="IDTR_SERVICE_TYPE" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="serviceTypecode" type="string">
+			<column name="TR_SERVICE_TYPE_CODE" length="45" not-null="false" />
+		</property>
+		<property name="serviceTypeDecription" type="string">
+			<column name="TR_SERVICE_TYPE_DESCRIPTION" length="45"
+				not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra" table="tr_infra_type_ref_infra">
+		<id name="id" type="int">
+			<column name="idtr_infra_type_ref_infra" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="label" type="string">
+			<column name="tr_infra_label" length="255" not-null="false" />
+		</property>
+		<property name="code" type="string">
+			<column name="tr_infra_code" length="10" not-null="false" />
+		</property>
+		<many-to-one name="category" class="fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra" lazy="false"
+			column="idtr_infra_category" not-null="true" />
+
+	</class>
+</hibernate-mapping>

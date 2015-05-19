@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.esiag.isies.pds.model.healthPath">
+	<class name="Step" table="tr_healthPath_step">
+		<id name="id" column="idtr_step">
+			<generator class="increment" />
+		</id>
+		<property name="startDate" type="date" column="tr_step_start_date" />
+		<property name="endDate" type="date" column="tr_step_end_date" />
+		<property name="status" type="string" column="tr_step_status" />
+		<!-- many-to-one name="healtpath" column="tr_step_healthPath" 
+		class="fr.esiag.isies.pds.model.healthPath.HealthPath" not-null="true" -->
+		<many-to-one name="healthPath" class="fr.esiag.isies.pds.model.healthPath.HealthPath" fetch="select">
+            <column name="tr_health_paths" not-null="true" />
+        </many-to-one>
+		<joined-subclass name="fr.esiag.isies.pds.model.healthPath.MedicalStep"
+			table="tr_step_medical" lazy="false">
+			<key column="idtr_step" />
+			<many-to-one name="medicalAct"
+				class="fr.esiag.isies.pds.model.hospital.medical.MedicalAct" column="idtr_medical_ccam"
+				unique="true" not-null="false" cascade="all" />
+		</joined-subclass>
+		<joined-subclass name="fr.esiag.isies.pds.model.healthPath.BasicStep"
+			table="tr_basic_step_medical" lazy="false">
+			<key column="idtr_step" />
+			<property name="actionName" type="string" column="tr_basic_step_action" />
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

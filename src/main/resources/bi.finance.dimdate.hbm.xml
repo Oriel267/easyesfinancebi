@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.bi.finance.DimDate"
+		table="tr_dim_date" dynamic-insert="true">
+		<id name="idDate" type="int">
+			<column name="IDTR_DATE" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="month" type="int">
+			<column name="TR_MONTH_DATE" length="45" not-null="false" />
+		</property>
+		<property name="year" type="int" precision="6" scale="0">
+			<column name="TR_YEAR_DATE" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

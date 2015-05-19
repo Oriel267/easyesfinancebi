@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.bi.finance.staging.StagingAddress" table="tr_address" dynamic-insert="true" >
+		<id name="id" type="int">
+		<column name="idtr_address" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="streetNumber" type="string">
+			<column name="tr_address_street_number" length="10" not-null="false" />
+		</property>
+		<property name="streetType" type="string">
+			<column name="tr_address_street_type" length="45" not-null="false" />
+		</property>
+		<property name="streetName" type="string">
+			<column name="tr_address_street_name" length="45" not-null="false" />
+		</property>
+		<property name="region" type="string">
+			<column name="tr_address_region" length="45" not-null="false" />
+		</property>
+		<property name="zipCode" type="string">
+			<column name="tr_address_zip_code" length="20" not-null="false" />
+		</property>
+		<property name="city" type="string">
+			<column name="tr_address_city" length="45" not-null="false" />
+		</property>
+		<one-to-one name="person"
+			class="fr.esiag.isies.pds.model.bi.finance.staging.StagingPerson"
+			cascade="save-update" />
+			
+	</class>
+</hibernate-mapping>

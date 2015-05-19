@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.referential.organization.ServiceType"
+		table="tr_service_type" dynamic-update="true">
+		<id name="id" type="int">
+			<column name="IDTR_SERVICE_TYPE" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="code" type="string">
+			<column name="TR_SERVICE_TYPE_CODE" length="45" not-null="false" />
+		</property>
+		<property name="label" type="string">
+			<column name="TR_SERVICE_TYPE_DESCRIPTION" length="45"
+				not-null="false" />
+		</property>
+		<property name="categoryService" type="string">
+			<column name="TR_SERVICE_TYPE_CATEGORY" length="45" not-null="false" />
+		</property>
+		<set name="organizationSet" table="tr_orga_serv_association"
+			inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="IDTR_SERVICE_TYPE" not-null="true" />
+			</key>
+			<many-to-many
+				entity-name="fr.esiag.isies.pds.model.referential.organization.Organization">
+				<column name="IDTR_ORGANIZATION" not-null="true" />
+			</many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

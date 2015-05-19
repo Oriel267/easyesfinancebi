@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.bi.finance.staging.StagingHealthPath"
+		table="tr_staging_health_path">
+		<id name="id" type="int">
+			<column name="idtr_staging_health_path" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="myOrganization"
+			class="fr.esiag.isies.pds.model.bi.finance.staging.StagingOrganization"
+			not-null="false" lazy="false">
+			<column name="tr_id_staging_orga"></column>
+		</many-to-one>
+		<property name="startDate" type="date">
+			<column name="tr_health_path_start_date" length="45" not-null="false" />
+		</property>
+		<property name="endDate" type="date">
+			<column name="tr_health_path_end_date" length="45" not-null="false" />
+		</property>
+		<property name="currentState" type="string">
+			<column name="tr_health_path_status" length="45" not-null="false" />
+		</property>
+		<set name="steps" table="tr_staging_healthPath_step" inverse="true"
+			lazy="false" fetch="select">
+			<key>
+				<column name="tr_staging_health_paths" not-null="true" />
+			</key>
+			<one-to-many class="fr.esiag.isies.pds.model.bi.finance.staging.StagingHealthPathStep" />
+		</set>
+		<many-to-one name="medicalRecord"
+			class="fr.esiag.isies.pds.model.bi.finance.staging.StagingMedicalRecord"
+			lazy="false">
+			<column name="IDTR_MEDICAL_RECORD" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

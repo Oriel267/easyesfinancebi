@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.hospital.medical.TypeAct" table="tr_medical_act_speciality">
+		<id name="id" type="int">
+			<column name="idtr_medical_act_speciality" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="label" type="string">
+			<column name="tr_medical_act_speciality_label" length="255" not-null="false" />
+		</property>
+		<property name="code" type="string">
+			<column name="tr_medical_act_speciality_code" length="10" not-null="false" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

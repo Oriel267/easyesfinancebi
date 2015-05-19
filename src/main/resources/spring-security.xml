@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:secu="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<secu:http auto-config="true" access-denied-page="/denied.jsp">
+		<secu:intercept-url pattern="/login.jsp" access="ROLE_ANONYMOUS" />
+		<secu:intercept-url pattern="/js**" access="ROLE_ANONYMOUS" />
+		<secu:intercept-url pattern="/login-failure.jsp"
+			access="ROLE_ANONYMOUS" />
+		<secu:intercept-url pattern="/ihm/**" access="ROLE_SIS" />
+
+		<secu:form-login login-page="/login.jsp"
+			authentication-failure-url="/login-failure.jsp" />
+	</secu:http>
+
+	<secu:authentication-manager>
+		<secu:authentication-provider>
+			<secu:user-service>
+				<secu:user name="frulio" password="peter" authorities="ROLE_SIS,ROLE_ANONYMOUS" />
+				<secu:user name="labraga" password="jawad" authorities="ROLE_SIS,ROLE_ANONYMOUS" />
+				<secu:user name="brenner" password="alexandre" authorities="ROLE_TEACHER,ROLE_ANONYMOUS" />
+				<secu:user name="giraud" password="gilles" authorities="ROLE_TEACHER,ROLE_ANONYMOUS" />
+				
+			</secu:user-service>
+		</secu:authentication-provider>
+	</secu:authentication-manager>
+
+</beans>

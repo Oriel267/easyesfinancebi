@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.bi.finance.DimMedicalAct"
+		table="tr_dim_medical_ccam" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="idtr_medical_ccam" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="codeAct" type="string">
+			<column name="tr_medical_ccam_code" length="45" not-null="false" />
+		</property>
+		<property name="nameAct" type="string" precision="45" scale="0">
+			<column name="tr_medical_ccam_label" not-null="false" />
+		</property>
+		<property name="actPrice" type="double">
+			<column name="tr_medical_ccam_price" length="50" not-null="false" />
+		</property>
+		<property name="refund" type="int">
+			<column name="tr_medical_ccam_refund" length="45" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.esiag.isies.pds.model.bi.finance.staging">
+	<class name="StagingHealthPathStep" table="tr_staging_healthPath_step">
+		<id name="id" column="idtr_staging_step">
+			<generator class="increment" />
+		</id>
+		<property name="startDate" type="date" column="tr_staging_step_start_date" />
+		<property name="endDate" type="date" column="tr_staging_step_end_date" />
+		<property name="status" type="string" column="tr_staging_step_status" />
+		<!-- many-to-one name="healtpath" column="tr_step_healthPath" 
+		class="fr.esiag.isies.pds.model.healthPath.HealthPath" not-null="true" -->
+		<many-to-one name="healthPath" class="fr.esiag.isies.pds.model.bi.finance.staging.StagingHealthPath" fetch="select">
+            <column name="tr_staging_health_paths" not-null="false" />
+        </many-to-one>
+        <many-to-one name="serviceType"
+			class="fr.esiag.isies.pds.model.bi.finance.staging.StagingServiceType"
+			not-null="true" lazy="false">
+			<column name="tr_id_staging_Service_Type"></column>
+		</many-to-one>
+		<joined-subclass name="fr.esiag.isies.pds.model.bi.finance.staging.StagingMedicalStep"
+			table="tr_staging_step_medical" lazy="false">
+			<key column="idtr_step" />
+			<many-to-one name="medicalAct"
+				class="fr.esiag.isies.pds.model.bi.finance.staging.StagingMedicalAct" column="idtr_medical_ccam"
+				unique="false" not-null="false" />
+		</joined-subclass>
+		<joined-subclass name="fr.esiag.isies.pds.model.bi.finance.staging.StagingBasicStep"
+			table="tr_basic_step_medical" lazy="false">
+			<key column="idtr_step" />
+			<property name="actionName" type="string" column="tr_basic_step_action" />
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

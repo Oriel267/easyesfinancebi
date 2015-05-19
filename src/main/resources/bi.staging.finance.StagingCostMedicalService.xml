@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="fr.esiag.isies.pds.model.bi.finance.staging">
+	<class name="StagingCostsMedicalservice" table="tr_costsmedicalservice" >
+		<id name="id_Costsmedicalservice" type="int">
+			<column name="tr_idcostsmedicalservice" />
+			<generator class="identity" />
+		</id>
+		<property name="Costs_mediclservice" type="int">
+			<column name="tr_costsmedicalservice" length="11" not-null="true"/>
+		</property>
+		
+		<set name="Medical_services" table="tr_medicalservicetable" fetch="select">
+            <key>
+                <column name="tr_idcostsmedicalservice"></column>
+            </key>
+            <one-to-many class="StagingMedicalservice"/>
+        </set>
+	</class>
+</hibernate-mapping> 

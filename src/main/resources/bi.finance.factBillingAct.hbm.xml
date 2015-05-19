@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.bi.finance.factBilingAct"
+		table="tr_tfa_billing_act" dynamic-insert="true">
+		<id name="idBillingAct" type="int">
+			<column name="idtr_tfa_billing_act" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="orga"
+			class="fr.esiag.isies.pds.model.bi.finance.DimOrganization"
+			not-null="true" lazy="false">
+			<column name="tr_id_dim_Orga"></column>
+		</many-to-one>
+		<many-to-one name="orgatype"
+			class="fr.esiag.isies.pds.model.referential.organization.OrgaType"
+			not-null="true" lazy="false">
+			<column name="tr_id_dim_OrgaType"></column>
+		</many-to-one>
+		<many-to-one name="serviceType"
+			class="fr.esiag.isies.pds.model.bi.finance.DimServiceType"
+			not-null="true" lazy="false">
+			<column name="tr_id_dim_Service_Type"></column>
+		</many-to-one>
+		<many-to-one name="date"
+			class="fr.esiag.isies.pds.model.bi.finance.DimDate"
+			not-null="true" lazy="false">
+			<column name="tr_id_dim_Date"></column>
+		</many-to-one>
+		<many-to-one name="ccam"
+			class="fr.esiag.isies.pds.model.bi.finance.DimMedicalAct"
+			not-null="true" lazy="false">
+			<column name="tr_id_dim_CCAM"></column>
+		</many-to-one>
+		<many-to-one name="typeAct"
+			class="fr.esiag.isies.pds.model.hospital.medical.TypeAct"
+			not-null="true" lazy="false">
+			<column name="tr_id_dim_Speciality_Acte_CCAM"></column>
+		</many-to-one>
+		<property name="factActRefund" type="int">
+			<column name="fact_rate_refund" length="45" not-null="false" />
+		</property>
+		<property name="caAct" type="double">
+			<column name="fact_CA_act" length="45" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

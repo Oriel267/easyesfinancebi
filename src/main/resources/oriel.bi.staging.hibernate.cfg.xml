@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+	
+
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bi.staging</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+
+
+
+		<property name="show_sql">true</property>
+		
+		<!-- organization schema -->
+		<mapping resource="bi.staging.finance.StagingOrganization.hbm.xml" />
+		<mapping resource="bi.staging.finance.StagingTypeOrganisation.hbm.xml" />
+		<mapping resource="bi.staging.finance.StagingTypeService.hbm.xml" />
+		<mapping resource="bi.staging.finance.StagingPerson.hbm.xml" />
+		
+		<mapping resource="bi.staging.finance.Stagingadresse.hbm.xml" />
+		<mapping resource="bi.staging.finance.StagingMedicalJourney.xml" />
+		<mapping resource="bi.staging.finance.StagingMedicalService.xml" />
+		<mapping resource="bi.staging.finance.StagingCostMedicalService.xml" />
+		<mapping resource="bi.staging.finance.StagingReimbursementMedicalService.xml" />
+		<!-- medical schema -->
+		<mapping resource="bi.staging.finance.StagingMedicalAct.xml" />
+		<mapping resource="bi.staging.finance.typeAct.xml" />
+		<!-- Health Path Shéma -->
+		<mapping resource="bi.staging.finance.StaginghealthPath.hbm.xml" />
+		<mapping resource="bi.staging.finance.StagingHealthPathStep.hbm.xml" />
+		<mapping resource="bi.staging.finance.Stagingmedical-record.hbm.xml" />
+
+	</session-factory>
+</hibernate-configuration>

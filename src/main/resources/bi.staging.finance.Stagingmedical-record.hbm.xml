@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="fr.esiag.isies.pds.model.bi.finance.staging.StagingMedicalRecord"
+		table="tr_medical_record">
+		<id name="id" type="int">
+		 <column name="IDTR_MEDICAL_RECORD" precision="5" scale="0" /> 
+			<generator class="increment" /> 
+		</id>
+		<property name="height" type="string">
+			<column name="tr_medical_record_height" length="45" not-null="false" />
+		</property>
+		<property name="weight" type="string">
+			<column name="tr_medical_record_weight" length="45" not-null="false" />
+		</property>
+		<property name="bloodGroup" type="string">
+			<column name="tr_medical_record_blood_group" length="45"
+				not-null="false" />
+		</property>
+		<property name="statusPatient" type="string">
+			<column name="tr_medical_record_status_patient" length="45"
+				not-null="false" />
+		</property>
+		<property name="typePatient" type="string">
+			<column name="tr_medical_record_type_patient" length="45"
+				not-null="false" />
+		</property>
+		<property name="age" type="int">
+			<column name="tr_medical_record_age" length="45"
+				not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

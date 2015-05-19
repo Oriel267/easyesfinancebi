@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.bi.finance.staging.StagingMedicalAct" table="tr_medical_ccam">
+		<id name="id" type="int">
+			<column name="idtr_medical_ccam" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="updateDate" type="date">
+			<column name="UPDATE_DATE" length="255" not-null="false" />
+		</property>
+		<property name="createDate" type="date">
+			<column name="CREATE_DATE" length="255" not-null="true" />
+		</property>
+		<property name="updateUser" type="string">
+			<column name="UPDATE_USER" length="255" not-null="true" />
+		</property>
+		<property name="codeAct" type="string">
+			<column name="tr_medical_ccam_code" length="255" not-null="true" />
+		</property>
+		<property name="nameAct" type="string">
+			<column name="tr_medical_ccam_label" length="255" not-null="true" />
+		</property>
+		<property name="actTime" type="int">
+			<column name="tr_medical_ccam_treatment_time"  not-null="true" />
+		</property>
+		<property name="isPrincipal" type="int">
+			<column name="tr_medical_ccam_principal"  not-null="true" />
+		</property>
+		<property name="actPrice" type="double">
+			<column name="tr_medical_ccam_price"  not-null="true" />
+		</property>
+		<property name="groupingCode" type="string">
+			<column name="tr_medical_ccam_code_group" length="255" not-null="true" />
+		</property>
+		<property name="exonerationRule" type="string">
+			<column name="tr_medical_ccam_ticket" length="255" not-null="true" />
+		</property>
+		<property name="refund" type="int">
+			<column name="tr_medical_ccam_refund" length="255" not-null="true" />
+		</property>
+		<property name="actNote" type="string">
+			<column name="tr_medical_ccam_notes" length="3500" not-null="true" />
+		</property>
+		
+		<many-to-one name="idtypeAct" class="fr.esiag.isies.pds.model.bi.finance.staging.StagingTypeAct" lazy="false"
+			column="idtr_medical_act_speciality" not-null="true" />
+		
+		
+		
+	</class>
+</hibernate-mapping>

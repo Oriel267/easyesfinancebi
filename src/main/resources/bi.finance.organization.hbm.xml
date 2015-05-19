@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.bi.finance.DimOrganization"
+		table="tr_dim_organization" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="IDTR_ORGANIZATION" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="name" type="string">
+			<column name="TR_ORGA_COMPANY_NAME" length="45" not-null="false" />
+		</property>
+		<property name="streetNumber" type="int" precision="6" scale="0">
+			<column name="TR_ORGA_STREET_NUMBER" not-null="false" />
+		</property>
+		<property name="streetType" type="string">
+			<column name="TR_ORGA_STREET_TYPE" length="45" not-null="false" />
+		</property>
+		<property name="streetName" type="string">
+			<column name="TR_ORGA_STREET_NAME" length="45" not-null="false" />
+		</property>
+		<property name="zipCode" type="string">
+			<column name="TR_ORGA_ZIP_CODE" length="45" not-null="false" />
+		</property>
+		<property name="city" type="string">
+			<column name="TR_ORGA_CITY" length="45" not-null="false" />
+		</property>
+		<property name="department" type="string">
+			<column name="TR_ORGA_DEPARTMENT" length="45" not-null="false" />
+		</property>
+		<property name="phone" type="string">
+			<column name="TR_ORGA_TEL_NUMBER" length="45" not-null="false" />
+		</property>
+		<property name="siret" type="string">
+			<column name="TR_ORGA_SIRET" length="45" not-null="false" />
+		</property>
+		<property name="fax" type="string">
+			<column name="TR_ORGA_FAX" length="45" not-null="false" />
+		</property>
+		<property name="email" type="string">
+			<column name="TR_ORGA_EMAIL" length="255" not-null="false" />
+		</property>
+		<property name="latitude" type="float">
+			<column name="TR_ORGA_LATITUDE" not-null="false" />
+		</property>
+		<property name="longitude" type="float">
+			<column name="TR_ORGA_LONGITUDE" not-null="false" />
+		</property>
+		<property name="FINESS" type="string">
+			<column name="TR_ORGA_FINESS" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

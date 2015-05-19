@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.referential.organization.Organization"
+		table="tr_organization" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="IDTR_ORGANIZATION" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="name" type="string">
+			<column name="TR_ORGA_COMPANY_NAME" length="45" not-null="false" />
+		</property>
+		<property name="streetNumber" type="int" precision="6" scale="0">
+			<column name="TR_ORGA_STREET_NUMBER" not-null="false" />
+		</property>
+		<property name="streetType" type="string">
+			<column name="TR_ORGA_STREET_TYPE" length="45" not-null="false" />
+		</property>
+		<property name="streetName" type="string">
+			<column name="TR_ORGA_STREET_NAME" length="45" not-null="false" />
+		</property>
+		<property name="zipCode" type="string">
+			<column name="TR_ORGA_ZIP_CODE" length="45" not-null="false" />
+		</property>
+		<property name="city" type="string">
+			<column name="TR_ORGA_CITY" length="45" not-null="false" />
+		</property>
+		<property name="department" type="string">
+			<column name="TR_ORGA_DEPARTMENT" length="45" not-null="false" />
+		</property>
+		<property name="phone" type="string">
+			<column name="TR_ORGA_TEL_NUMBER" length="45" not-null="false" />
+		</property>
+		<property name="siret" type="string">
+			<column name="TR_ORGA_SIRET" length="45" not-null="false" />
+		</property>
+		<property name="fax" type="string">
+			<column name="TR_ORGA_FAX" length="45" not-null="false" />
+		</property>
+		<property name="email" type="string">
+			<column name="TR_ORGA_EMAIL" length="255" not-null="false" />
+		</property>
+		<property name="latitude" type="float">
+			<column name="TR_ORGA_LATITUDE" not-null="false" />
+		</property>
+		<property name="longitude" type="float">
+			<column name="TR_ORGA_LONGITUDE" not-null="false" />
+		</property>
+		<property name="updateDate" type="date">
+			<column name="UPDATEDATE" length="45" not-null="false" />
+		</property>
+		<property name="createDate" type="date">
+			<column name="CREATEDATE" length="45" not-null="false" />
+		</property>
+		<property name="updateUser" type="string">
+			<column name="UPDATEUSER" length="45" not-null="false" />
+		</property>
+		<set name="servicesSet" table="tr_orga_serv_association" inverse="false"
+			lazy="true" fetch="join" cascade="all">
+			<key>
+				<column name="IDTR_ORGANIZATION" not-null="true" />
+			</key>
+			<many-to-many
+				entity-name="fr.esiag.isies.pds.model.referential.organization.ServiceType">
+				<column name="IDTR_SERVICE_TYPE" not-null="true" />
+			</many-to-many>
+		</set>
+		<many-to-one name="orgaType"
+			class="fr.esiag.isies.pds.model.referential.organization.OrgaType"
+			not-null="true" lazy="false">
+			<column name="IDTR_ORGANIZATION_TYPE"></column>
+		</many-to-one>
+		<joined-subclass
+			name="fr.esiag.isies.pds.model.referential.organization.Hospital"
+			table="tr_orga_hospital" lazy="false">
+			<key column="IDTR_ORGANIZATION" />
+			<property name="finess" type="string" column="TR_HOSPITAL_FINESS" />
+			<set name="patients" table="tr_person_patient" lazy="true"
+				inverse="false" fetch="select" cascade="all">
+				<key>
+					<column name="idtr_person" not-null="true" />
+				</key>
+				<one-to-many
+					class="fr.esiag.isies.pds.model.referential.person.patient.Patient" />
+			</set>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

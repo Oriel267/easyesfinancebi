@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.Person"
+		discriminator-value="null" table="tr_person" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="idtr_person" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="firstName" type="string" column="tr_person_first_name"
+			length="45" not-null="false" />
+		<property name="lastName" type="string" column="tr_person_last_name"
+			length="45" not-null="false" />
+		<property name="gender" type="character" column="tr_person_gender"
+			length="45" not-null="false" />
+		<property name="birthdate" type="date" column="tr_person_birth_date"
+			not-null="false" />
+		<one-to-one name="address" class="fr.esiag.isies.pds.model.Address"
+			cascade="save-update" />
+			
+		<joined-subclass
+			name="fr.esiag.isies.pds.model.referential.person.staff.StaffMember"
+			table="tr_person_staffMember" lazy="false">
+			<key column="idtr_person" />
+			<property name="staffNumber" type="string"
+				column="tr_person_staffMember_number" length="45" not-null="false" />
+			<property name="idProfession" type="int"
+				column="tr_person_staffMember_id_profession" length="5" not-null="false" />
+			<property name="idSpeciality" type="int"
+				column="tr_person_staffMember_id_speciality" length="5" not-null="false" />
+			<property name="idOrganization" type="int"
+				column="tr_person_staffMember_id_organization" length="5" not-null="false" />
+			<property name="idService" type="int"
+				column="tr_person_staffMember_id_service" length="5" not-null="false" />
+			<property name="phoneNumberWork" type="string"
+				column="tr_person_staffMember_phone_number_work" length="20"
+				not-null="false" />
+			<property name="phoneNumberMobile" type="string"
+				column="tr_person_staffMember_phone_number_mobile" length="20"
+				not-null="false" />
+			<property name="mailAdress" type="string"
+				column="tr_person_staffMember_mail_adress" length="45" not-null="false" />
+			<property name="codeADELI" type="string"
+				column="tr_person_staffMember_ADELI" length="20" not-null="false" />
+			<property name="codeRPPS" type="string" column="tr_person_staffMember_RPPS"
+				length="20" not-null="false" />
+			<property name="availability" type="string"
+				column="tr_person_staffMember_availability" length="20" not-null="false" />
+		</joined-subclass>
+		<joined-subclass
+			name="fr.esiag.isies.pds.model.referential.person.patient.Patient"
+			table="tr_person_patient" lazy="false">
+			<key column="idtr_person" />
+			<property name="nir" type="string" column="tr_person_patient_nir" />
+			<property name="phoneNumberHome" type="string"
+				column="tr_person_patient_phone_number_home" length="20" not-null="false" />
+			<property name="phoneNumberMobile" type="string"
+				column="tr_person_patient_phone_number_mobile" length="20" not-null="false" />
+			<property name="mailAdress" type="string"
+				column="tr_person_patient_mail_adress" length="45" not-null="false" />
+			<property name="idOrganization" type="int"
+				column="tr_person_patient_id_organization" length="5" not-null="false" />
+			<many-to-one name="hospital" class="fr.esiag.isies.pds.model.referential.organization.Hospital"
+				lazy="false" cascade="all">
+				<column name="IDTR_ORGANIZATION" />
+			</many-to-one>
+			<one-to-one name="medicalRecord"
+				class="fr.esiag.isies.pds.model.referential.medicalRecord.MedicalRecord"
+				cascade="save-update" />
+				<one-to-one name="medicaljourney" class="fr.esiag.isies.pds.model.billing.MedicalJourney" fetch="select"></one-to-one>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

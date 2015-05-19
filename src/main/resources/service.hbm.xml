@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.referential.organization.Service"
+		table="tr_orga_serv_association">
+		<composite-id name="id">
+			<key-property type="int" name="idOrganizaton" column="tr_organization_idtr_organization" />
+			<key-property type="int" name="idServiceTypeCurrent" column="tr_service_type_tr_service_type_code" />
+		</composite-id>
+		<many-to-one name="idServiceTypeCurrent"
+			class="fr.esiag.isies.pds.model.referential.organization.ServiceType"
+			not-null="true">
+			<column name="IDTR_SERVICE_TYPE"></column>
+		</many-to-one>
+		<many-to-one name="idOrganizaton"
+			class="fr.esiag.isies.pds.model.referential.organization.Organization"
+			not-null="true">
+			<column name="IDTR_ORGANIZATION"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
